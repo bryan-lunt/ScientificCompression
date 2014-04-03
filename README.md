@@ -52,13 +52,13 @@ BIBLIOGRAPHY
 These papers describe algorithms for compressing floating point data arrays. They should give a much better compression ratio than various kinds of ZIP.
 
 
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.91.7936&rep=rep1&type=pdf
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.8968&rep=rep1&type=pdf
-http://users.ices.utexas.edu/~burtscher/papers/dcc07a.pdf
-http://users.ices.utexas.edu/~burtscher/papers/tr08.pdf
-http://www.ece.neu.edu/groups/nucar/GPGPU4/files/oneil.pdf
-http://www.cs.unc.edu/~isenburg/lcpfpv/
-https://xiph.org/flac/
-http://www.mcs.anl.gov/papers/P5009-0813_1.pdf
-http://users.ices.utexas.edu/~burtscher/papers/dcc06.pdf
+- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.91.7936&rep=rep1&type=pdf
+- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.8968&rep=rep1&type=pdf
+- http://users.ices.utexas.edu/~burtscher/papers/dcc07a.pdf
+- http://users.ices.utexas.edu/~burtscher/papers/tr08.pdf
+- http://www.ece.neu.edu/groups/nucar/GPGPU4/files/oneil.pdf
+- http://www.cs.unc.edu/~isenburg/lcpfpv/
+- https://xiph.org/flac/
+- http://www.mcs.anl.gov/papers/P5009-0813_1.pdf
+- http://users.ices.utexas.edu/~burtscher/papers/dcc06.pdf
 
