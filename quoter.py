@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from itertools import *
 import re
+from collections import Counter
 
 SPACE_CHAR = ' '
 SPACE_ASCII = ord(SPACE_CHAR)
@@ -57,20 +58,35 @@ def unquote_ascii(instring):
 	if retstring is not "":
 		yield retstring
 
-simple_float = re.compile("\d+\.\d+")
+#simple_float = re.compile("[-]?\d+\.\d+")
+simple_float = re.compile("[-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
 def find_floats(string):
 	non_floats = simple_float.split(string)
 	floats = simple_float.findall(string)
-
+	
+	
 	return non_floats, floats
+
+format_finder = re.compile("[-+]?(\d+)(\.\d*)?([eE])?")
+def determine_format(float_ascii):
+	match = format_finder.match(float_ascii)
+	assert match is not None, "No match!"
+	
+	before = len(match.group(1))
+	after = len(match.group(2)) - 1
+	exponent = match.group(3)
+
+	return before,after,exponent
 
 def find_and_format(string):
 	sub_strs, floats = find_floats(string)
 
-	formats = [(tuple(map(len, f.split('.'))), f) for f in floats]
+	formats = [(determine_format(f), f) for f in floats]
 
-	format_set = set([i for i,j in formats])
+	format_counts = Counter([i for i,j in formats]).items()
+	format_counts.sort(key=lambda x:x[1], reverse=True)
 
+	format_set = [i for i,j in format_counts]
 
 	format_hash = dict(zip(format_set, count(0)))
 	format_table = dict([(i,j) for j,i in format_hash.iteritems()])
@@ -94,8 +110,13 @@ def quote_split(some_text):
 	return text, floats, format_table
 
 class formatter(object):
-	def __init__(self, a,b):
-		self.fmtstr = "%" + str(a) + "." + str(b) + "f"
+	def __init__(self, a,b,e):
+		if e is None:
+			self.fmtstr = "%" + str(a) + "." + str(b) + "f"
+		elif e in ['e', 'E']:
+			self.fmtstr = "%" + str(a) + "." + str(b) + e
+		else:
+			raise Exception("Should not get here")
 
 	def __call__(self, float):
 		return self.fmtstr%float
@@ -104,7 +125,7 @@ def format_table_to_format_functions(format_table):
 	retdict = dict()
 
 	for k, v in format_table.iteritems():
-		retdict[k] = formatter(v[0],v[1])
+		retdict[k] = formatter(*v)
 	return retdict
 
 def quote_combine(text, floats, format_table):

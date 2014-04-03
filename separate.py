@@ -20,5 +20,5 @@ with open(FILENAME+"_table", "w") as outtable:
 	P.dump(format_table, outtable)
 
 with open(FILENAME+"_numeric", "w") as outnumeric:
-	#S.save(outnumeric,S.array(floats,S.float64))
-	S.savez_compressed(outnumeric,S.array(floats,S.float64))
+	S.save(outnumeric,S.array(floats,S.float64))
+#	S.savez_compressed(outnumeric,S.array(floats,S.float64))
