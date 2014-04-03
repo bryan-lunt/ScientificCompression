@@ -29,4 +29,36 @@ NUL followed by a _non_ control character indicate place holders 32-127.
 
 (TODO: Figure out which floats can be stored as single vs which need to be double for lossless compression.)
 
+Goals by phase of implementation
+===============================
+
+- Phase 0 (proof of concept) : 
+	Separate numerical data from ASCII formatting, store numerical data in a binary format.
+
+- Phase 1a : 
+	Find better compression algorithms specifically for the numerical data. (See the bibliography.)
+
+- Phase 1 :
+	More storage formats (singles and doubles). Store each value in the smallest storage neede for lossless compression. (Depends on the format and number of digits after the decimal.)
+	
+	Find a better/more efficient set of control sequences / place holders. (Currently common control characters, such as \t and \n are being converted to a two byte representation. That is probably not good.)
+
+- Phase 2:
+	Detect large-scale formatting. For example "The next N floats are all tab/comma/space/space-tab separated values with M values per line" could be stored in a small representation. Especially if that format gets used over and over, then it would be possible for each place it is used to become a single byte place-holder in the ASCII.
+	Large-scale formatting should work in blocks/regions, so that multiple large-scale formats can be included in a single file.
+
+BIBLIOGRAPHY
+===========
+These papers describe algorithms for compressing floating point data arrays. They should give a much better compression ratio than various kinds of ZIP.
+
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.91.7936&rep=rep1&type=pdf
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.8968&rep=rep1&type=pdf
+http://users.ices.utexas.edu/~burtscher/papers/dcc07a.pdf
+http://users.ices.utexas.edu/~burtscher/papers/tr08.pdf
+http://www.ece.neu.edu/groups/nucar/GPGPU4/files/oneil.pdf
+http://www.cs.unc.edu/~isenburg/lcpfpv/
+https://xiph.org/flac/
+http://www.mcs.anl.gov/papers/P5009-0813_1.pdf
+http://users.ices.utexas.edu/~burtscher/papers/dcc06.pdf
 
