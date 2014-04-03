@@ -62,3 +62,10 @@ These papers describe algorithms for compressing floating point data arrays. The
 - http://www.mcs.anl.gov/papers/P5009-0813_1.pdf
 - http://users.ices.utexas.edu/~burtscher/papers/dcc06.pdf
 
+Compression libraries
+
+- http://computation.llnl.gov/casc/fpzip/fpzip.html
+- http://www.h5py.org/lzf/
+
+Storage formats (instead of separate files)
+- http://www.h5py.org/
