@@ -103,7 +103,7 @@ class formatter(object):
 def format_table_to_format_functions(format_table):
 	retdict = dict()
 
-	for k, v in format_table:
+	for k, v in format_table.iteritems():
 		retdict[k] = formatter(v[0],v[1])
 	return retdict
 
