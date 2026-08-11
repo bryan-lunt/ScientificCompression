@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
 import scipy as S
+import numpy as np
 
 import quoter as q
 
 import sys
-import cPickle as P
+import pickle as P
 
 TEXT, FLOATS, FORMAT = sys.argv[1:4]
 
 TEXT_data = open(TEXT).read()
 
-FLOATS_data = S.load(open(FLOATS)).tolist()
+FLOATS_data = np.load(open(FLOATS)).tolist()
 ####
 #a = S.load(FLOATS)
 #FLOATS_data = a['arr_0'].tolist()

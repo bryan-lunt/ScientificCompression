@@ -5,7 +5,7 @@ import scipy as S
 import quoter as q
 
 import sys
-import cPickle as P
+import pickle as P
 
 FILENAME = sys.argv[1]
 

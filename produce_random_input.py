@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import scipy as S
+import numpy as np
 
-data = S.randn(1000, 10)
-S.savetxt(sys.stdout,data)
+data = np.random.randn(1000, 10)
+np.savetxt(sys.stdout,data)
