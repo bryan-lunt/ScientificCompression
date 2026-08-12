@@ -16,4 +16,4 @@ RUN apk add bash
 
 RUN apk add python2 python2-dev py2-pip openblas-dev
 RUN pip install numpy==1.16
-RUN pip install scipy==1.2.3
+# RUN pip install scipy==1.2.3

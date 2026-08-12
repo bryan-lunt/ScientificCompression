@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import scipy as S
+import numpy as np
 
 import quoter as q
 
@@ -20,5 +20,5 @@ with open(FILENAME+"_table", "w") as outtable:
 	P.dump(format_table, outtable)
 
 with open(FILENAME+"_numeric", "w") as outnumeric:
-	S.save(outnumeric,S.array(floats,S.float64))
-#	S.savez_compressed(outnumeric,S.array(floats,S.float64))
+	np.save(outnumeric,np.array(floats,np.float64))
+#	np.savez_compressed(outnumeric,np.array(floats,np.float64))
