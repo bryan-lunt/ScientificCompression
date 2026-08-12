@@ -59,7 +59,7 @@ def unquote_ascii(instring):
 		yield retstring
 
 #simple_float = re.compile("[-]?\d+\.\d+")
-simple_float = re.compile("[-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
+simple_float = re.compile(r"[-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
 def find_floats(string):
 	non_floats = simple_float.split(string)
 	floats = simple_float.findall(string)
@@ -67,7 +67,7 @@ def find_floats(string):
 
 	return non_floats, floats
 
-format_finder = re.compile("[-+]?(\d+)(\.\d*)?([eE])?")
+format_finder = re.compile(r"[-+]?(\d+)(\.\d*)?([eE])?")
 def determine_format(float_ascii):
 	match = format_finder.match(float_ascii)
 	assert match is not None, "No match!"
@@ -125,7 +125,7 @@ class formatter(object):
 def format_table_to_format_functions(format_table):
 	retdict = dict()
 
-	for k, v in format_table.iteritems():
+	for k, v in format_table.items():
 		retdict[k] = formatter(*v)
 	return retdict
 
