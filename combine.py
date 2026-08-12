@@ -5,7 +5,7 @@ import numpy as np
 import quoter as q
 
 import sys
-import cPickle as P
+import pickle as P
 
 TEXT, FLOATS, FORMAT = sys.argv[1:4]
 
