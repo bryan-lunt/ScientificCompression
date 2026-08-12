@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import scipy as S
 import numpy as np
 
 import quoter as q
