@@ -57,11 +57,11 @@ def unquote_ascii(instring):
 			retstring = ""
 			yield numerical_value
 			#continue
-	if retstring is not "":
+	if retstring != "":
 		yield retstring
 
 #simple_float = re.compile("[-]?\d+\.\d+")
-simple_float = re.compile("[-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
+simple_float = re.compile(r"[-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
 def find_floats(string):
 	non_floats = simple_float.split(string)
 	floats = simple_float.findall(string)
@@ -69,7 +69,7 @@ def find_floats(string):
 
 	return non_floats, floats
 
-format_finder = re.compile("[-+]?(\d+)(\.\d*)?([eE])?")
+format_finder = re.compile(r"[-+]?(\d+)(\.\d*)?([eE])?")
 def determine_format(float_ascii):
 	match = format_finder.match(float_ascii)
 	assert match is not None, "No match!"
@@ -86,12 +86,13 @@ def find_and_format(string):
 	formats = [(determine_format(f), f) for f in floats]
 
 	format_counts = Counter([i for i,j in formats]).items()
+	format_counts = list(format_counts) #part of python3 conversion
 	format_counts.sort(key=lambda x:x[1], reverse=True)
 
 	format_set = [i for i,j in format_counts]
 
 	format_hash = dict(zip(format_set, count(0)))
-	format_table = dict([(i,j) for j,i in format_hash.iteritems()])
+	format_table = dict([(i,j) for j,i in format_hash.items()])
 
 	formats = [format_hash.get(i) for i,j in formats]
 	floats = map(float, floats)
@@ -102,10 +103,10 @@ def find_and_format(string):
 def quote_split(some_text):
 	sub_strs, formats, floats, format_table = find_and_format(some_text)
 
-	sub_strs = map(quote_ascii, sub_strs)
+	sub_strs = list(map(quote_ascii, sub_strs))
 
 	text = ""
-	for plain, format in izip(sub_strs[:-1], formats):
+	for plain, format in zip(sub_strs[:-1], formats):
 		text += plain + escape_int(format)
 	text += sub_strs[-1]
 
@@ -126,7 +127,7 @@ class formatter(object):
 def format_table_to_format_functions(format_table):
 	retdict = dict()
 
-	for k, v in format_table.iteritems():
+	for k, v in format_table.items():
 		retdict[k] = formatter(*v)
 	return retdict
 

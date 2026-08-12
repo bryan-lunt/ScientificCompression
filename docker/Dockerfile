@@ -1,8 +1,4 @@
-FROM alpine:3.11
-
-# VERSIONS
-ENV ALPINE_VERSION=3.11 \
-    PYTHON_VERSION=2.7.18
+FROM alpine:latest
 
 RUN apk --no-cache add \
     vim \
@@ -11,9 +7,13 @@ RUN apk --no-cache add \
     cmake \
     build-base binutils
 
-RUN apk add zip
-RUN apk add bash
+    #\
+    #llvm22 llvm22-libs llvm22-linker-tools llvm22-static \
+    #lld22 lld22-libs \
+    #clang clang22-extra-tools
 
-RUN apk add python2 python2-dev py2-pip openblas-dev
-RUN pip install numpy==1.16
-# RUN pip install scipy==1.2.3
+RUN apk add python3 py3-pip py3-pip-tools py3-pip-bash-completion py3-numpy
+#RUN apk add py3-scipy
+RUN apk add zip
+
+RUN apk add bash
